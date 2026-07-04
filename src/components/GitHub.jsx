@@ -3,7 +3,7 @@ import { Star, GitFork, GitCommit, Code2, ExternalLink, Users } from 'lucide-rea
 import { GithubIcon } from './BrandIcons';
 
 // ── Replace with your GitHub username ──
-const GITHUB_USERNAME = 'jensilinjino';
+const GITHUB_USERNAME = 'jensilin';
 
 const STATS = [
   { icon: Code2,     label: 'Repositories',  value: '10+',  color: '#00d4ff' },

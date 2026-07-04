@@ -111,7 +111,7 @@ export default function Contact() {
               className="flex items-center gap-3 text-sm text-[#94a3b8]"
             >
               <MapPin size={15} className="text-[#00d4ff] shrink-0" />
-              Chennai, Tamil Nadu, India
+              Bangalore, Tamil Nadu, India
             </motion.div>
 
             {/* Social cards */}
@@ -271,7 +271,7 @@ export default function Contact() {
                         className="text-[#00d4ff] hover:underline"
                         style={{ cursor: 'none' }}
                       >
-                        jensilinjinojc@gmail.com
+                        jensilinjino@gmail.com
                       </a>
                     </p>
                   </motion.form>

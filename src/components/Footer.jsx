@@ -11,9 +11,9 @@ const LINKS = [
 ];
 
 const SOCIALS = [
-  { icon: GithubIcon,   href: 'https://github.com/jensilinjino',            label: 'GitHub'   },
-  { icon: LinkedinIcon, href: 'https://linkedin.com/in/jensilinjino',       label: 'LinkedIn' },
-  { icon: Mail,         href: 'mailto:jensilinjinojc@gmail.com',            label: 'Email'    },
+  { icon: GithubIcon,   href: 'https://github.com/jensilin',            label: 'GitHub'   },
+  { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/jensilin-jino/',       label: 'LinkedIn' },
+  { icon: Mail,         href: 'mailto:jensilinjino@gmail.com',            label: 'Email'    },
 ];
 
 export default function Footer() {

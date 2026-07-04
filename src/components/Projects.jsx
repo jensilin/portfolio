@@ -12,7 +12,7 @@ const PROJECTS = [
       'A full-stack college canteen management application built with the MERN stack. Features student login with auth, admin dashboard for menu and order management, real-time order tracking, and a clean, responsive UI.',
     tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'JWT Auth', 'REST API'],
     links: {
-      github: 'https://github.com/jensilinjino/scc-delicious',
+      github: 'https://github.com/jensilin',
     },
     metrics: [
       { icon: Star,    label: 'Featured Project' },
@@ -192,7 +192,7 @@ export default function Projects() {
         >
           <p className="text-[#64748b] text-sm mb-4">More projects on the way. Follow along:</p>
           <motion.a
-            href="https://github.com/jensilinjino"
+            href="https://github.com/jensilin"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, boxShadow: '0 0 24px rgba(0,212,255,0.25)' }}

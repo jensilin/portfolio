@@ -70,7 +70,7 @@ export default function About() {
                 </div>
                 <h3 className="text-[#f1f5f9] font-bold text-lg">Jensilin Jino J C</h3>
                 <p className="text-[#00d4ff] text-sm font-medium mt-1">Telecom Developer @ TCS</p>
-                <p className="text-[#64748b] text-xs mt-1">Chennai, India 🇮🇳</p>
+                <p className="text-[#64748b] text-xs mt-1">Bangalore, India 🇮🇳</p>
 
                 <div className="w-full mt-6 pt-5 border-t border-white/5 grid grid-cols-2 gap-4 text-center">
                   <div>
@@ -123,7 +123,7 @@ export default function About() {
           <div className="space-y-6">
             <motion.p {...fadeUp(0.15)} className="text-[#94a3b8] text-lg leading-relaxed">
               Telecom Developer with hands-on experience in{' '}
-              <span className="text-[#00d4ff] font-medium">OSS/BSS systems</span>,{' '}
+              <span className="text-[#00d4ff] font-medium">OSS systems</span>,{' '}
               performance management, and{' '}
               <span className="text-[#a855f7] font-medium">Python automation</span>. I specialise in
               building ETL workflows, processing large-scale telecom data, and delivering insights

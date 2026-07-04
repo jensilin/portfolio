@@ -104,7 +104,7 @@ export default function Navbar() {
             </motion.button>
           ))}
           <motion.a
-            href="https://github.com/jensilinjino"
+            href="https://github.com/jensilin"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

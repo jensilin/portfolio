@@ -101,7 +101,7 @@ export default function Experience() {
                   style={{ background: 'rgba(0,212,255,0.08)', color: '#00d4ff', border: '1px solid rgba(0,212,255,0.18)' }}
                 >
                   <Calendar size={11} />
-                  2024 – Present
+                  2025 – Present
                 </div>
               </div>
 
