@@ -79,7 +79,7 @@ export default function Navbar() {
         </motion.a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-3">
           {NAV_LINKS.map((link) => (
             <motion.button
               key={link.href}
@@ -103,22 +103,23 @@ export default function Navbar() {
               )}
             </motion.button>
           ))}
-          <motion.a
-            href="https://github.com/jensilin"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-[#00d4ff] transition-all duration-300"
-            style={{
-              cursor: 'none',
-              border: '1px solid rgba(0,212,255,0.3)',
-              background: 'rgba(0,212,255,0.05)',
-              textDecoration: 'none',
-            }}
-          >
-            GitHub
-          </motion.a>
+        <motion.a
+          href="https://github.com/jensilin"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="ml-6 p-2 rounded-lg text-[#00d4ff] transition-all duration-300 flex items-center justify-center"
+          style={{
+            cursor: 'none',
+            border: '1px solid rgba(0,212,255,0.3)',
+            background: 'rgba(0,212,255,0.05)',
+            textDecoration: 'none',
+          }}
+          aria-label="GitHub"
+        >
+          <GithubIcon size={20} />
+        </motion.a>
         </div>
 
         {/* Mobile hamburger */}

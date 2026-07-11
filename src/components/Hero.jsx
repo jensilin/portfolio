@@ -102,7 +102,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 text-xs font-medium tracking-widest uppercase"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-12 text-[10px] font-medium tracking-widest uppercase"
           style={{ color: '#00d4ff', border: '1px solid rgba(0,212,255,0.2)' }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] animate-pulse" />
@@ -129,7 +129,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="h-10 mb-6 flex items-center justify-center"
+          className="h-14 mb-12 flex items-center justify-center"
         >
           <p
             className="text-xl md:text-2xl font-semibold text-[#94a3b8] typing-cursor pr-1"
@@ -144,7 +144,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-2 mb-10"
+          className="flex flex-wrap justify-center gap-4"
+          style={{ marginBottom: '9px' }}
         >
           {['Python', 'OSS/BSS', 'Kubernetes', 'AI Automation'].map((tag, i) => (
             <motion.span
@@ -152,7 +153,7 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 + i * 0.1 }}
-              className="tech-badge text-sm"
+              className="tech-badge text-[10px]"
             >
               {tag}
             </motion.span>
@@ -164,33 +165,37 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-4"
+          className="mt-4 flex flex-wrap justify-center gap-3"
         >
           <motion.button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(0,212,255,0.4)' }}
             whileTap={{ scale: 0.97 }}
-            className="px-7 py-3 rounded-xl font-semibold text-[#050816] text-sm tracking-wide transition-all"
+            className="rounded-full font-semibold text-[13px] text-[#050816] tracking-wide transition-all"
             style={{
               background: 'linear-gradient(135deg, #00d4ff, #7c3aed)',
               cursor: 'none',
               border: 'none',
+              padding: '4px 6px',
+              display: 'inline-block',
             }}
           >
-            View Projects
+          <span className="text-[11px]">View Projects</span>
           </motion.button>
-
           <motion.button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             whileHover={{ scale: 1.05, borderColor: 'rgba(0,212,255,0.6)' }}
             whileTap={{ scale: 0.97 }}
-            className="px-7 py-3 rounded-xl font-semibold text-sm text-[#f1f5f9] glass transition-all"
+            className="rounded-full font-semibold text-[13px] text-[#f1f5f9] transition-all"
             style={{
               cursor: 'none',
-              border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.35)',
+              padding: '4px 6px',
+              display: 'inline-block',
             }}
           >
-            Contact Me
+           <span className="text-[11px]">Contact Me</span>
           </motion.button>
 
           <motion.a
@@ -199,17 +204,18 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="px-7 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all"
+            className="rounded-full font-semibold text-[13px] flex items-center gap-2 transition-all"
             style={{
               cursor: 'none',
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(148,163,184,0.4)',
               color: '#94a3b8',
               textDecoration: 'none',
+              padding: '4px 6px',
             }}
           >
             <GithubIcon size={16} />
-            GitHub
+            <span className="text-[11px]">GitHub</span>
           </motion.a>
         </motion.div>
       </div>
@@ -223,7 +229,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[#64748b] hover:text-[#00d4ff] transition-colors"
         style={{ cursor: 'none', background: 'none', border: 'none' }}
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <span className="text-[10px] tracking-widest uppercase">Scroll</span>
         <ChevronDown size={18} className="animate-bounce" />
       </motion.button>
     </section>

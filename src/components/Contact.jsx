@@ -1,7 +1,12 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, Check, MapPin, Phone } from 'lucide-react';
+import { Mail, Send, Check, MapPin, AlertCircle } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
+
+const EJS_SERVICE  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EJS_TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EJS_KEY      = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const SOCIALS = [
   {
@@ -42,10 +47,11 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function Contact() {
-  const [form, setForm]     = useState({ name: '', email: '', message: '' });
-  const [sent, setSent]     = useState(false);
-  const [loading, setLoad]  = useState(false);
-  const [errors, setErrors] = useState({});
+  const [form, setForm]       = useState({ name: '', email: '', message: '' });
+  const [sent, setSent]       = useState(false);
+  const [loading, setLoad]    = useState(false);
+  const [errors, setErrors]   = useState({});
+  const [sendError, setSendError] = useState('');
 
   const validate = () => {
     const e = {};
@@ -59,12 +65,46 @@ export default function Contact() {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     if (!validate()) return;
+
     setLoad(true);
-    // Simulate send — wire up to Formspree / EmailJS in production
-    await new Promise(r => setTimeout(r, 1200));
-    setLoad(false);
-    setSent(true);
-    setForm({ name: '', email: '', message: '' });
+    setSendError('');
+
+    const submittedAt = new Date().toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      dateStyle: 'full',
+      timeStyle: 'short',
+    });
+
+    console.debug('[EmailJS] service:', EJS_SERVICE, '| template:', EJS_TEMPLATE, '| key:', EJS_KEY?.slice(0, 6) + '…');
+
+    try {
+      const result = await emailjs.send(
+        EJS_SERVICE,
+        EJS_TEMPLATE,
+        {
+          from_name:    form.name.trim(),
+          from_email:   form.email.trim(),
+          message:      form.message.trim(),
+          submitted_at: submittedAt,
+          to_email:     'jensilinjino@gmail.com',
+        },
+        EJS_KEY,
+      );
+      console.info('[EmailJS] success:', result.status, result.text);
+      setSent(true);
+      setForm({ name: '', email: '', message: '' });
+    } catch (err) {
+      const status = err?.status ?? 'unknown';
+      const text   = err?.text   ?? String(err);
+      console.error('[EmailJS] error — status:', status, '| detail:', text);
+      setSendError(
+        status === 'unknown'
+          ? 'Failed to send — please try again or email me directly.'
+          : `Send failed (${status}): ${text}`,
+      );
+    } finally {
+      setLoad(false);
+    }
   };
 
   return (
@@ -263,6 +303,18 @@ export default function Contact() {
                         </>
                       )}
                     </motion.button>
+
+                    {sendError && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm text-red-400"
+                        style={{ background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)' }}
+                      >
+                        <AlertCircle size={15} className="shrink-0" />
+                        {sendError}
+                      </motion.div>
+                    )}
 
                     <p className="text-[#64748b] text-xs text-center">
                       Or email directly at{' '}
