@@ -1,5 +1,4 @@
 ---
-globs: "**/*.jsx, **/*.tsx, **/*.js, **/*.ts"
 alwaysApply: false
 ---
 # React Frontend Guidelines
