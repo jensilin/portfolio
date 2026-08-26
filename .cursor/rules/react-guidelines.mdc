@@ -1,0 +1,120 @@
+---
+globs: "**/*.jsx, **/*.tsx, **/*.js, **/*.ts"
+alwaysApply: false
+---
+# React Frontend Guidelines
+
+## Component Structure
+
+- Use functional React components.
+- Keep components focused and maintainable.
+- Reuse existing components before creating new ones.
+- Avoid unnecessary component duplication.
+- Keep reusable UI logic in shared components or utilities.
+- Do not introduce unnecessary state or effects.
+- Follow the existing project architecture and naming conventions.
+
+## Responsive Design
+
+The portfolio must work well across:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+Never design only for the current desktop viewport.
+
+When modifying a section, check how it behaves at different viewport widths.
+
+Avoid fixed widths that can cause:
+
+- Content overflow
+- Overlapping sections
+- Text collisions
+- Excessive empty space
+- Horizontally scrolling pages
+
+Prefer responsive Tailwind classes and flexible layouts.
+
+Use:
+
+- `w-full`
+- `max-w-*`
+- `mx-auto`
+- `px-*`
+- `gap-*`
+- responsive breakpoints
+- CSS Grid
+- Flexbox
+
+instead of unnecessary fixed pixel dimensions.
+
+## Layout Spacing
+
+Maintain consistent spacing between:
+
+- Section headings
+- Subheadings
+- Cards
+- Buttons
+- Navigation elements
+- Content blocks
+
+Do not allow unrelated elements to visually touch each other.
+
+Avoid excessive padding or margins that make sections unnecessarily tall.
+
+Use consistent spacing scales instead of arbitrary values.
+
+## Cards
+
+Cards should have enough internal spacing so that:
+
+- Titles do not touch borders.
+- Descriptions have comfortable line height.
+- Technology badges have adequate spacing.
+- Buttons and links do not overlap content.
+- Card content remains readable at smaller widths.
+
+Cards should grow naturally with their content.
+
+Do not force fixed heights unless the design specifically requires them.
+
+When multiple cards are displayed in a grid:
+
+- Keep consistent gaps.
+- Allow cards to resize naturally.
+- Ensure text wraps correctly.
+- Prevent buttons or links from overlapping card content.
+
+## Typography
+
+Maintain a clear visual hierarchy.
+
+Use appropriate differences between:
+
+- Section labels
+- Headings
+- Subheadings
+- Body text
+- Metadata
+- Buttons
+- Tags
+
+Do not use unnecessarily large text that causes wrapping or layout problems.
+
+Long titles and descriptions must be allowed to wrap naturally.
+
+Avoid:
+
+- `white-space: nowrap` unless specifically required.
+- Fixed-width text containers that cause overflow.
+- Extremely large headings on small screens.
+
+Use responsive typography where appropriate.
+
+Example:
+
+```jsx
+className="text-3xl md:text-5xl lg:text-6xl"

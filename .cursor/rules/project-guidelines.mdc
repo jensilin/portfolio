@@ -1,0 +1,177 @@
+---
+alwaysApply: true
+---
+
+# Portfolio Project Rules
+
+## Project Environment
+
+- This is a React + Vite portfolio project.
+- The project runs inside WSL.
+- Node.js version: 24.18.0.
+- npm version: 11.16.0.
+- Vite version: 8.1.3.
+- Tailwind CSS is used for styling.
+- Run all npm/Node.js commands from WSL, not Windows.
+- Do not assume Node.js or npm is installed on Windows.
+- The project currently resides on /mnt/c.
+
+## Node Modules
+
+The project uses Linux-specific native dependencies inside node_modules.
+
+Do not replace Linux native bindings with Windows bindings.
+
+Relevant Linux dependencies include:
+- @rolldown/binding-linux-x64-gnu
+- @tailwindcss/oxide-linux-x64-gnu
+- lightningcss-linux-x64-gnu
+- @oxlint/binding-linux-x64-gnu
+
+If dependencies need to be reinstalled, do it from WSL.
+
+## Development Server
+
+- Use Vite for local development.
+- The development server normally runs on port 5173.
+- Use http://localhost:5173 to access the application from Windows.
+- Windows localhost forwarding to the WSL Vite server is expected to work.
+- Do not unnecessarily change the Vite server configuration if localhost access is working.
+
+## HMR / File Watching
+
+The repository is located on /mnt/c.
+
+WSL file watching may not reliably detect changes made on the Windows-mounted filesystem.
+
+If HMR does not work after file changes, use polling in vite.config.js:
+
+server: {
+  watch: {
+    usePolling: true,
+    interval: 300
+  }
+}
+
+Do not enable polling unnecessarily if HMR is already working.
+
+If filesystem performance becomes a problem, consider moving the repository into the WSL filesystem, such as ~/portfolio.
+
+## React
+
+- Preserve the existing React architecture and component structure.
+- Before creating a new component, search the codebase for an existing component that can be reused.
+- Avoid unnecessary state, effects, or dependencies.
+- Keep components focused and maintainable.
+- Reuse existing utilities and patterns where possible.
+- Do not introduce new libraries unless they are genuinely required.
+- Do not rewrite working components without a clear reason.
+
+## Styling
+
+- Tailwind CSS is used by the project.
+- Follow the existing styling and design patterns.
+- Prefer Tailwind and existing project styles instead of introducing another styling system.
+- Preserve the existing visual design unless the user explicitly requests a redesign.
+- Avoid unnecessary global CSS changes.
+
+## Vite
+
+- The project uses Vite.
+- Preserve the existing React and Tailwind plugins.
+- Preserve base: './' unless there is a specific deployment-related reason to change it.
+- Do not change Vite configuration unnecessarily.
+
+## Source Code
+
+Before modifying code:
+
+1. Inspect the relevant files.
+2. Understand the existing implementation.
+3. Search for related components, utilities, and references.
+4. Reuse existing patterns where possible.
+5. Make the smallest change necessary to satisfy the request.
+
+Do not make broad refactors unless explicitly requested.
+
+## Build and Deployment
+
+- Run npm commands from WSL.
+- Run build, preview, deployment, and linting commands from WSL.
+- Do not run Node/npm tooling from Windows.
+- gh-pages is a deployment-related dependency.
+- Do not remove or modify deployment tooling without checking how deployment currently works.
+
+## Generated Files
+
+- Never manually modify generated build output.
+- Do not modify files inside dist/ unless explicitly requested.
+- Make changes to source files and regenerate build output when required.
+- Do not treat generated files as source code.
+
+## EmailJS
+
+The contact form uses EmailJS.
+
+- Preserve the existing EmailJS submission flow.
+- Do not expose EmailJS configuration values unnecessarily.
+- Do not log service IDs, template IDs, public keys, or other configuration values to the browser console.
+- Handle submission errors properly.
+- Do not break existing contact form functionality when making unrelated changes.
+
+## CustomCursor
+
+The CustomCursor implementation contains an animation effect involving mouse position.
+
+When modifying CustomCursor:
+
+- Inspect the existing useEffect carefully.
+- Avoid unnecessary teardown and recreation of animation loops.
+- Prefer stable animation loops and refs where appropriate.
+- Preserve the existing cursor behavior unless the user requests a change.
+
+## Existing Codebase Cleanup
+
+The following items have been identified as possible cleanup opportunities:
+
+- src/App.css appears to be unused Vite scaffold code.
+- public/icons.svg appears to have no current references.
+- fadeUp is duplicated across multiple section files.
+- gh-pages is a deployment-related dependency.
+- Contact.jsx contains browser console logging related to EmailJS configuration.
+- CustomCursor may recreate its animation loop due to mouse-position dependencies.
+
+Do not automatically delete, refactor, or modify these items during unrelated tasks.
+
+Before removing anything, search the codebase and verify that it is actually unused.
+
+## Code Quality
+
+- Follow existing naming conventions.
+- Keep code readable and maintainable.
+- Avoid duplicated logic.
+- Remove unused imports introduced by your changes.
+- Do not leave debugging console logs behind.
+- Avoid unnecessary comments.
+- Prefer simple solutions over unnecessary abstractions.
+
+## Verification
+
+After making changes:
+
+- Check the affected files.
+- Run the appropriate validation or build command from WSL when practical.
+- Confirm the Vite server still starts.
+- Check for build errors.
+- Check for runtime errors.
+- Verify that unrelated functionality still works.
+
+## Agent Behavior
+
+- Always inspect the existing code before making assumptions.
+- Search the codebase before creating duplicate functionality.
+- Preserve existing architecture and design unless explicitly asked to change them.
+- Make minimal, targeted changes.
+- Do not delete files or dependencies without verifying their usage.
+- Do not introduce unnecessary dependencies.
+- If an architectural change is required, explain the reason before implementing it.
