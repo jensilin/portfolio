@@ -61,36 +61,39 @@ function ProjectCard({ project }) {
         style={{ background: `linear-gradient(90deg, ${project.accentColor}, #7c3aed)` }}
       />
 
-      {/* Featured badge */}
-      {project.featured && (
-        <div
-          className="absolute top-5 right-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
-          style={{ background: 'rgba(0,212,255,0.1)', color: '#00d4ff', border: '1px solid rgba(0,212,255,0.2)' }}
-        >
-          <Star size={10} fill="#00d4ff" />
-          Featured
-        </div>
-      )}
+      <div className="p-6 sm:p-7 lg:p-8">
+        {/* Header — badge sits in flow so it can never overlap the title */}
+        <div className="flex items-start justify-between gap-4 mb-6">
+          <div className="min-w-0">
+            <p className="text-[#64748b] text-xs font-mono mb-2">Full-Stack / MERN</p>
+            <h3 className="text-[#f1f5f9] font-bold text-xl sm:text-2xl leading-snug break-words">
+              {project.title}
+            </h3>
+            <p className="text-[#94a3b8] text-sm mt-2 leading-relaxed">{project.subtitle}</p>
+          </div>
 
-      <div className="p-7">
-        {/* Header */}
-        <div className="mb-5">
-          <p className="text-[#64748b] text-xs font-mono mb-1">Full-Stack / MERN</p>
-          <h3 className="text-[#f1f5f9] font-bold text-xl">{project.title}</h3>
-          <p className="text-[#94a3b8] text-sm mt-1">{project.subtitle}</p>
+          {project.featured && (
+            <div
+              className="shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+              style={{ background: 'rgba(0,212,255,0.1)', color: '#00d4ff', border: '1px solid rgba(0,212,255,0.2)' }}
+            >
+              <Star size={10} fill="#00d4ff" />
+              Featured
+            </div>
+          )}
         </div>
 
-        <p className="text-[#94a3b8] text-sm leading-relaxed mb-6">{project.description}</p>
+        <p className="text-[#94a3b8] text-sm leading-relaxed mb-7">{project.description}</p>
 
         {/* Tech badges */}
-        <div className="flex flex-wrap gap-2 mb-7">
+        <div className="flex flex-wrap gap-2.5 mb-8">
           {project.tech.map(t => (
             <span key={t} className="tech-badge">{t}</span>
           ))}
         </div>
 
         {/* Links */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           {project.links.github && (
             <motion.a
               href={project.links.github}
@@ -121,15 +124,15 @@ function PlaceholderCard({ project, index }) {
     <motion.div
       {...fadeUp(0.1 + index * 0.1)}
       whileHover={{ y: -4, borderColor: `${project.accentColor}25` }}
-      className="glass rounded-2xl p-6 transition-all duration-300 relative overflow-hidden"
+      className="glass rounded-2xl p-6 sm:p-7 transition-all duration-300 relative overflow-hidden"
       style={{ border: '1px dashed rgba(255,255,255,0.08)' }}
     >
       {/* Coming soon badge */}
-      <div className="flex items-center gap-2 mb-4">
-        <Clock size={14} style={{ color: project.accentColor }} />
+      <div className="flex items-center gap-2 mb-5">
+        <Clock size={14} className="shrink-0" style={{ color: project.accentColor }} />
         <span className="text-[#64748b] text-xs font-mono">Coming Soon</span>
       </div>
-      <h3 className="text-[#94a3b8] font-bold text-lg mb-2">{project.title}</h3>
+      <h3 className="text-[#94a3b8] font-bold text-lg mb-2.5 leading-snug break-words">{project.title}</h3>
       <p className="text-[#64748b] text-sm leading-relaxed">{project.description}</p>
 
       {/* Decorative shimmer */}
@@ -145,9 +148,12 @@ function PlaceholderCard({ project, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-28 px-6">
+    <section
+      id="projects"
+      className="relative pt-20 sm:pt-24 lg:pt-28 pb-24 sm:pb-32 lg:pb-40 px-6 overflow-hidden"
+    >
       <div
-        className="absolute bottom-20 left-1/4 w-96 h-96 pointer-events-none"
+        className="absolute bottom-20 left-1/4 w-96 max-w-full h-96 pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 70%)',
           filter: 'blur(40px)',
@@ -166,20 +172,20 @@ export default function Projects() {
           >
             Things I've Built
           </h2>
-          <p className="text-[#64748b] text-sm mt-6">
+          <p className="text-[#64748b] text-sm mt-6 max-w-md mx-auto leading-relaxed">
             A showcase of projects that reflect my skills and passion
           </p>
         </motion.div>
 
         {/* Featured project */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           {PROJECTS.map(p => (
             <ProjectCard key={p.id} project={p} />
           ))}
         </div>
 
         {/* Placeholder cards */}
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
           {PLACEHOLDERS.map((p, i) => (
             <PlaceholderCard key={p.id} project={p} index={i} />
           ))}

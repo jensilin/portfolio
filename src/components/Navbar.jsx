@@ -79,14 +79,14 @@ export default function Navbar() {
         </motion.a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-1.5">
           {NAV_LINKS.map((link) => (
             <motion.button
               key={link.href}
               onClick={() => handleNav(link.href)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+              className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                 active === link.href
                   ? 'text-[#00d4ff]'
                   : 'text-[#94a3b8] hover:text-[#f1f5f9]'
@@ -109,7 +109,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="ml-6 p-2 rounded-lg text-[#00d4ff] transition-all duration-300 flex items-center justify-center"
+          className="ml-3 lg:ml-6 p-2 rounded-lg text-[#00d4ff] transition-all duration-300 flex items-center justify-center"
           style={{
             cursor: 'none',
             border: '1px solid rgba(0,212,255,0.3)',

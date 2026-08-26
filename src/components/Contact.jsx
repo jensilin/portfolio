@@ -108,10 +108,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-6">
+    <section id="contact" className="relative py-28 px-6 overflow-hidden">
       {/* Glow */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] pointer-events-none"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] h-[300px] pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, transparent 70%)',
           filter: 'blur(40px)',

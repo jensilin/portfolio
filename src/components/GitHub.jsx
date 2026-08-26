@@ -46,9 +46,12 @@ const fadeUp = (delay = 0) => ({
 
 export default function GitHubSection() {
   return (
-    <section id="github" className="relative py-28 px-6 grid-bg">
+    <section
+      id="github"
+      className="relative pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-24 lg:pb-28 px-6 grid-bg overflow-hidden"
+    >
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse, rgba(0,212,255,0.04) 0%, transparent 70%)',
           filter: 'blur(40px)',
@@ -67,7 +70,7 @@ export default function GitHubSection() {
           >
             GitHub Activity
           </h2>
-          <p className="text-[#64748b] text-sm mt-6">
+          <p className="text-[#64748b] text-sm mt-6 max-w-md mx-auto leading-relaxed">
             Open-source contributions and coding activity
           </p>
         </motion.div>
@@ -75,7 +78,7 @@ export default function GitHubSection() {
         {/* Profile card */}
         <motion.div
           {...fadeUp(0.12)}
-          className="glass-strong rounded-2xl p-7 mb-8 flex flex-col sm:flex-row items-center gap-6"
+          className="glass-strong rounded-2xl p-6 sm:p-7 lg:p-8 mb-8 flex flex-col md:flex-row items-center gap-6 md:gap-7"
           style={{ border: '1px solid rgba(0,212,255,0.1)' }}
         >
           <div
@@ -88,12 +91,12 @@ export default function GitHubSection() {
           >
             JJ
           </div>
-          <div className="text-center sm:text-left">
-            <h3 className="text-[#f1f5f9] font-bold text-xl">Jensilin Jino J C</h3>
-            <p className="text-[#94a3b8] text-sm mt-1">
+          <div className="min-w-0 md:flex-1 text-center md:text-left">
+            <h3 className="text-[#f1f5f9] font-bold text-xl leading-snug break-words">Jensilin Jino J C</h3>
+            <p className="text-[#94a3b8] text-sm mt-1.5 leading-relaxed break-words">
               @{GITHUB_USERNAME} · Telecom Developer &amp; Python Enthusiast
             </p>
-            <p className="text-[#64748b] text-xs mt-2">
+            <p className="text-[#64748b] text-xs mt-2.5 leading-relaxed">
               Building telecom automation tools and exploring AI-driven solutions.
             </p>
           </div>
@@ -103,7 +106,7 @@ export default function GitHubSection() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
-            className="ml-auto shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all"
+            className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all"
             style={{
               background: 'linear-gradient(135deg, #00d4ff, #7c3aed)',
               color: '#050816',
@@ -117,7 +120,7 @@ export default function GitHubSection() {
         </motion.div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 mb-8">
           {STATS.map(({ icon: Icon, label, value, color }, i) => (
             <motion.div
               key={label}
@@ -141,20 +144,20 @@ export default function GitHubSection() {
         {/* Contribution heatmap */}
         <motion.div
           {...fadeUp(0.35)}
-          className="glass rounded-2xl p-6"
+          className="glass rounded-2xl p-5 sm:p-6 lg:p-7"
           style={{ border: '1px solid rgba(255,255,255,0.07)' }}
         >
-          <div className="flex items-center justify-between mb-5">
-            <div>
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 mb-5">
+            <div className="min-w-0">
               <h3 className="text-[#f1f5f9] font-semibold text-sm">Contribution Activity</h3>
               <p className="text-[#64748b] text-xs mt-1">Last 6 months (decorative)</p>
             </div>
-            <div className="flex items-center gap-2 text-xs text-[#64748b]">
+            <div className="shrink-0 flex items-center gap-2 text-xs text-[#64748b]">
               <span>Less</span>
               {[0,1,2,3,4].map(l => (
                 <div
                   key={l}
-                  className="w-3 h-3 rounded-sm"
+                  className="w-3 h-3 rounded-sm shrink-0"
                   style={{ background: LEVEL_COLORS[l] }}
                 />
               ))}
@@ -192,7 +195,7 @@ export default function GitHubSection() {
               <img
                 src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=00d4ff&text_color=94a3b8&icon_color=7c3aed&border_color=ffffff11&bg_color=ffffff00&hide_border=false`}
                 alt="GitHub Stats"
-                className="w-full"
+                className="block w-full h-auto"
                 onError={e => { e.currentTarget.style.display = 'none'; }}
               />
             </div>
@@ -203,7 +206,7 @@ export default function GitHubSection() {
               <img
                 src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=00d4ff&text_color=94a3b8&border_color=ffffff11&bg_color=ffffff00&hide_border=false`}
                 alt="Top Languages"
-                className="w-full"
+                className="block w-full h-auto"
                 onError={e => { e.currentTarget.style.display = 'none'; }}
               />
             </div>
