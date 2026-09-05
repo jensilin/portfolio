@@ -7,6 +7,32 @@ import { GithubIcon, LinkedinIcon } from './BrandIcons';
 const EJS_SERVICE  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EJS_TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EJS_KEY      = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EJS_CONFIGURED = Boolean(EJS_SERVICE && EJS_TEMPLATE && EJS_KEY);
+
+// @emailjs/browser rejects with three different shapes: an EmailJSResponseStatus
+// ({ status, text }), a bare string for missing config, or a TypeError when the
+// request never leaves the browser.
+const describeSendError = (err) => {
+  if (err && typeof err.status === 'number') {
+    return {
+      log: `status ${err.status} — ${err.text}`,
+      ui: `Send failed (${err.status}). Please try again or email me directly.`,
+    };
+  }
+  if (typeof err === 'string') {
+    return { log: err, ui: 'Email service is misconfigured — please email me directly.' };
+  }
+  if (err instanceof TypeError) {
+    return {
+      log: `request blocked or offline — ${err.message}`,
+      ui: 'Could not reach the mail service. Check your connection or ad blocker, then try again.',
+    };
+  }
+  return {
+    log: String(err?.message ?? err),
+    ui: 'Failed to send — please try again or email me directly.',
+  };
+};
 
 const SOCIALS = [
   {
@@ -66,8 +92,18 @@ export default function Contact() {
     ev.preventDefault();
     if (!validate()) return;
 
-    setLoad(true);
     setSendError('');
+
+    if (!EJS_CONFIGURED) {
+      console.error(
+        '[EmailJS] Missing VITE_EMAILJS_SERVICE_ID / VITE_EMAILJS_TEMPLATE_ID / VITE_EMAILJS_PUBLIC_KEY. ' +
+        'Add them to .env.local and restart the dev server — Vite only reads env files at startup.',
+      );
+      setSendError('Email service is not configured — please email me directly.');
+      return;
+    }
+
+    setLoad(true);
 
     const submittedAt = new Date().toLocaleString('en-IN', {
       timeZone: 'Asia/Kolkata',
@@ -75,10 +111,8 @@ export default function Contact() {
       timeStyle: 'short',
     });
 
-    console.debug('[EmailJS] service:', EJS_SERVICE, '| template:', EJS_TEMPLATE, '| key:', EJS_KEY?.slice(0, 6) + '…');
-
     try {
-      const result = await emailjs.send(
+      await emailjs.send(
         EJS_SERVICE,
         EJS_TEMPLATE,
         {
@@ -90,18 +124,12 @@ export default function Contact() {
         },
         EJS_KEY,
       );
-      console.info('[EmailJS] success:', result.status, result.text);
       setSent(true);
       setForm({ name: '', email: '', message: '' });
     } catch (err) {
-      const status = err?.status ?? 'unknown';
-      const text   = err?.text   ?? String(err);
-      console.error('[EmailJS] error — status:', status, '| detail:', text);
-      setSendError(
-        status === 'unknown'
-          ? 'Failed to send — please try again or email me directly.'
-          : `Send failed (${status}): ${text}`,
-      );
+      const { log, ui } = describeSendError(err);
+      console.error('[EmailJS] send failed —', log);
+      setSendError(ui);
     } finally {
       setLoad(false);
     }
