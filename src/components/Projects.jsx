@@ -7,16 +7,18 @@ const PROJECTS = [
     id: 1,
     featured: true,
     title: 'SCC Delicious',
-    subtitle: 'College Canteen Management System',
+    category: 'Full-Stack / AI-Assisted',
+    subtitle: 'College Canteen Ordering & Management Platform',
     description:
-      'A full-stack college canteen management application built with the MERN stack. Features student login with auth, admin dashboard for menu and order management, real-time order tracking, and a clean, responsive UI.',
-    tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'JWT Auth', 'REST API'],
+      'An AI-assisted full-stack college canteen ordering platform. Students browse shops and menus, manage a cart, check out, and track order status; admins work the order queue, with REST endpoints for shop, menu, and stock management. Adds JWT access/refresh authentication, an automated backend test suite, and production deployment on Vercel — built with Cursor as a hands-on exercise in AI-assisted engineering.',
+    tech: ['PostgreSQL', 'Prisma', 'Express.js', 'React', 'Node.js', 'JWT Auth', 'REST API', 'Vercel'],
     links: {
-      github: 'https://github.com/jensilin',
+      live: 'https://scc-delicious-frontend.vercel.app/',
+      github: 'https://github.com/jensilin/SCC-Delicious',
     },
     metrics: [
       { icon: Star,    label: 'Featured Project' },
-      { icon: GitFork, label: 'MERN Stack' },
+      { icon: GitFork, label: 'PostgreSQL + Prisma' },
     ],
     gradient: 'from-[#00d4ff]/10 to-[#7c3aed]/10',
     accentColor: '#00d4ff',
@@ -65,7 +67,7 @@ function ProjectCard({ project }) {
         {/* Header — badge sits in flow so it can never overlap the title */}
         <div className="flex items-start justify-between gap-4 mb-6">
           <div className="min-w-0">
-            <p className="text-[#64748b] text-xs font-mono mb-2">Full-Stack / MERN</p>
+            <p className="text-[#64748b] text-xs font-mono mb-2">{project.category}</p>
             <h3 className="text-[#f1f5f9] font-bold text-xl sm:text-2xl leading-snug break-words">
               {project.title}
             </h3>
@@ -94,6 +96,27 @@ function ProjectCard({ project }) {
 
         {/* Links */}
         <div className="flex flex-wrap gap-3">
+          {project.links.live && (
+            <motion.a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all"
+              style={{
+                background: 'linear-gradient(135deg, rgba(0,212,255,0.12), rgba(124,58,237,0.12))',
+                border: '1px solid rgba(0,212,255,0.2)',
+                color: '#00d4ff',
+                cursor: 'none',
+                textDecoration: 'none',
+              }}
+            >
+              <ExternalLink size={15} />
+              Live Demo
+            </motion.a>
+          )}
+
           {project.links.github && (
             <motion.a
               href={project.links.github}
