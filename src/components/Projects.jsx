@@ -23,6 +23,25 @@ const PROJECTS = [
     gradient: 'from-[#00d4ff]/10 to-[#7c3aed]/10',
     accentColor: '#00d4ff',
   },
+  {
+    id: 3,
+    title: 'Flowgenix',
+    category: 'Python / Developer Tooling',
+    subtitle: 'Apache NiFi Flow Migration Tool',
+    description:
+      'Apache NiFi 2.0 removed XML templates, stranding every flow exported from a 1.x cluster. Flowgenix converts them into the JSON flow definitions 2.x imports, targeting a specific release because the schema changed again at NiFi 2.6 — 19 releases, both directions. Conversion is deterministic and offline with no model in the path: identifiers, positions, properties and group hierarchy survive intact, and anything needing manual review is flagged rather than silently substituted. Covered by 135 automated tests.',
+    tech: ['Python', 'FastAPI', 'Apache NiFi', 'Docker', 'Vercel', 'Serverless'],
+    links: {
+      live: 'https://flowgenix-five.vercel.app/',
+      github: 'https://github.com/jensilin/Flowgenix',
+    },
+    metrics: [
+      { icon: Star,    label: '19 NiFi Releases' },
+      { icon: GitFork, label: 'Deterministic Migration' },
+    ],
+    gradient: 'from-[#7c3aed]/10 to-[#00d4ff]/10',
+    accentColor: '#7c3aed',
+  },
 ];
 
 const PLACEHOLDERS = [
@@ -32,13 +51,6 @@ const PLACEHOLDERS = [
     description: 'ML-powered anomaly detection for telecom KPI streams using Python and LSTM networks.',
     comingSoon: true,
     accentColor: '#7c3aed',
-  },
-  {
-    id: 3,
-    title: 'NiFi ETL Dashboard',
-    description: 'Visual dashboard for monitoring Apache NiFi ETL pipelines with real-time metrics.',
-    comingSoon: true,
-    accentColor: '#00d4ff',
   },
 ];
 
@@ -200,15 +212,15 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Featured project */}
-        <div className="mb-6 sm:mb-8">
+        {/* Shipped projects */}
+        <div className="grid gap-6 sm:gap-8 mb-6 sm:mb-8">
           {PROJECTS.map(p => (
             <ProjectCard key={p.id} project={p} />
           ))}
         </div>
 
         {/* Placeholder cards */}
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
+        <div className={`grid gap-5 sm:gap-6 ${PLACEHOLDERS.length > 1 ? 'sm:grid-cols-2' : ''}`}>
           {PLACEHOLDERS.map((p, i) => (
             <PlaceholderCard key={p.id} project={p} index={i} />
           ))}
